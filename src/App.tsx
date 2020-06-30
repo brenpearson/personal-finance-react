@@ -1,11 +1,10 @@
 import React from 'react';
-import { VictoryChart, VictoryLine, VictoryTheme, VictoryPie, VictoryLabel, VictoryAxis, VictoryContainer } from 'victory';
 import './App.css';
 import { Account, getAccount } from './api/Account';
 import { ProfileHeader } from './ui/ProfileHeader';
-import {TransactionList } from './ui/TransactionList';
-import { green, red, purple, deepPurple, grey } from '@material-ui/core/colors';
-import { capitalize } from '@material-ui/core';
+import { TransactionList } from './ui/TransactionList';
+import { ActivityLineChart } from './ui/ActivityLineChart';
+import { ExpensesPieChart } from './ui/ExpensesPieChart';
 import ReactPlayer from 'react-player';
 
 type AppState = { 
@@ -15,6 +14,8 @@ type AppState = {
 export class App extends React.Component<any, AppState> {
   constructor(props: any) {
     super(props)
+
+    // Set the placeholder empty account
     this.state = {
       account: {
         id: 0,
@@ -35,6 +36,7 @@ export class App extends React.Component<any, AppState> {
 
   componentDidMount() {
     if (this.state.account.id === 0) {
+      // Get account #1 on app first launch
       getAccount(1).then( acc => {
         this.setState({
           account: acc
@@ -49,7 +51,21 @@ export class App extends React.Component<any, AppState> {
         <body>
           <div className="row">
             <div className="ProfileBar">
-              <ProfileHeader account={this.state.account} />
+              <ProfileHeader account={this.state.account} switchAccount= {() => {
+                // Here in reality we would either log out or show an account picker for logged in
+                // accounts, but I'm just switching between 2 pre-configured accounts to test out
+                // the data binding with react etc.
+
+                // Toggle the account id
+                var newId = this.state.account.id === 1 ? 2 : 1;
+
+                // Get the new account and update the state
+                getAccount(newId).then( acc => {
+                  this.setState({
+                    account: acc
+                  })
+                })
+              }} />
             </div>
 
             <div className="column">
@@ -57,119 +73,7 @@ export class App extends React.Component<any, AppState> {
                 <div className="row">
                   <div className="column">
                     <div className="ContainerTitle">Activity</div>
-                      <VictoryChart
-                        height={500}
-                        width={700}
-                        padding={80}
-                        domainPadding={20} 
-                        animate={{
-                          duration: 1000
-                        }}
-                        theme={VictoryTheme.material}>
-                        <VictoryAxis
-                          dependentAxis={true}
-                          tickFormat={(t) => '$' + t}
-                          tickLabelComponent={<VictoryLabel style={{fontSize: '24px'}} />} />
-                        <VictoryAxis
-                          tickLabelComponent={<VictoryLabel style={{fontSize: '24px'}} />} />
-                        <VictoryLine 
-                          data={this.state.account.overview.income}
-                          
-                          style={{
-                            data: {
-                              stroke: green[600],
-                              strokeWidth: 5
-                            }
-                          }}
-                          events={[{
-                            target: "data",
-                            eventHandlers: {
-                              onMouseOver: () => {
-                                return [
-                                  {
-                                    target: "data",
-                                    mutation: ({ style }) => {
-                                      return {style: { strokeWidth: 8, stroke: green[600] }};
-                                    }
-                                  }, {
-                                    target: "labels",
-                                    mutation: ({ style }) => {
-                                      return {style: { 
-                                        fontWeight: 500,
-                                        fontSize: 12
-                                      }};
-                                    }
-                                  }
-                                ];
-                              },
-                              onMouseLeave: () => {
-                                return [
-                                  {
-                                    target: "data",
-                                    mutation: ({ style }) => {
-                                      return null;
-                                    }
-                                  }, {
-                                    target: "labels",
-                                    mutation: ({ style }) => {
-                                      return null;
-                                    }
-                                  }
-                                ];
-                              }
-                            }
-                          }]}
-                          y={(d) => d.value / 100}
-                          x="month" />
-                        <VictoryLine 
-                          data={this.state.account.overview.expenses}
-                          style={{
-                            data: {
-                              stroke: red[400],
-                              strokeWidth: 5
-                            }
-                          }}
-                          y={(d) => d.value / 100}
-                          events={[{
-                            target: "data",
-                            eventHandlers: {
-                              onMouseOver: () => {
-                                return [
-                                  {
-                                    target: "data",
-                                    mutation: ({ style }) => {
-                                      return {style: { strokeWidth: 7, stroke: red[400] }};
-                                    }
-                                  }, {
-                                    target: "labels",
-                                    mutation: ({ style }) => {
-                                      return {style: { 
-                                        fontWeight: 500,
-                                        fontSize: 12
-                                      }};
-                                    }
-                                  }
-                                ];
-                              },
-                              onMouseLeave: () => {
-                                return [
-                                  {
-                                    target: "data",
-                                    mutation: ({ style }) => {
-                                      return null;
-                                    }
-                                  }, {
-                                    target: "labels",
-                                    mutation: ({ style }) => {
-                                      return null;
-                                    }
-                                  }
-                                ];
-                              }
-                            }
-                          }]}
-                          x="month" />
-                      </VictoryChart>
+                      <ActivityLineChart account={this.state.account} />
                   </div>
                   <div className="column">
                     <div className="ContainerTitle">Transactions</div>
@@ -181,59 +85,7 @@ export class App extends React.Component<any, AppState> {
                       <div className="row">
                         <div className="column">
                           <div className="ContainerTitle">Expense Breakdown</div>
-                          <VictoryPie 
-                            theme={VictoryTheme.material}
-                            data={this.state.account.overview.expense_split}
-                            colorScale={["#ce93d8", "#80cbc4", "#9fa8da" ]}
-                            animate={{ duration: 0 }}
-                            style={{labels: {
-                              fontSize: 10,
-                              color: grey[100]
-                            }}}
-                            events={[{
-                              target: "data",
-                              eventHandlers: {
-                                onMouseOver: () => {
-                                  return [
-                                    {
-                                      target: "data",
-                                      mutation: ({ style }) => {
-                                        return {style: { fill: "#7e57c2" }};
-                                      }
-                                    }, {
-                                      target: "labels",
-                                      mutation: ({ style, text, data }) => {
-                                        return { 
-                                          style: { 
-                                            fontWeight: 500,
-                                            fontSize: 12
-                                          }
-                                        };
-                                      },
-                                    }
-                                  ];
-                                },
-                                onMouseLeave: () => {
-                                  return [
-                                    {
-                                      target: "data",
-                                      mutation: ({ style }) => {
-                                        return null;
-                                      }
-                                    }, {
-                                      target: "labels",
-                                      mutation: ({ style, text }) => {
-                                        return null;
-                                      }
-                                    }
-                                  ];
-                                }
-                              }
-                            }]}
-                            height={200}
-                            width={200}
-                            x={(d) => capitalize(d.category)}
-                            y="value" />
+                          <ExpensesPieChart account={this.state.account} />
                         </div>
                         <div className="column">
                           <div className="ContainerTitle">Finance Tips</div>

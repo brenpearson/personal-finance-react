@@ -6,8 +6,13 @@ import { Button } from '@material-ui/core';
 
 export type ProfileProps = { 
     account: Account;
+    switchAccount: () => any;
 };
 
+/**
+ * ProfileHeader
+ * A UI component to display a user's core details
+ */
 export class ProfileHeader extends React.Component<ProfileProps, any> {
     render() {
         return (
@@ -26,7 +31,10 @@ export class ProfileHeader extends React.Component<ProfileProps, any> {
                     <div className="Caption">Your savings</div>
                     <div className="Balance">${this.props.account.savings / 100}</div>
 
-                    <Button className="Button" style={{marginTop: '2em', borderRadius: 24}} variant="outlined" color="primary" autoCapitalize="false">Switch account</Button>
+                    <Button style={{marginTop: '2em', borderRadius: 24}} variant="outlined" 
+                        color="default" onClick={() => {this.props.switchAccount() }}>
+                            Switch account
+                    </Button>
                 </div>
             </div>
           );
