@@ -22,7 +22,7 @@
   },
   "scripts": {
     "dev": "react-scripts start",
-    "start": "serve -s build",
+    "start": "serve -s build && python backend/backend.py",
     "build": "react-scripts build",
     "heroku-postbuild": "npm run build"
   },
