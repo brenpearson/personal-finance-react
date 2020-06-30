@@ -6,6 +6,7 @@ import { ProfileHeader } from './ui/ProfileHeader';
 import {TransactionList } from './ui/TransactionList';
 import { green, red, purple, deepPurple, grey } from '@material-ui/core/colors';
 import { capitalize } from '@material-ui/core';
+import ReactPlayer from 'react-player';
 
 type AppState = { 
   account: Account;
@@ -175,66 +176,72 @@ export class App extends React.Component<any, AppState> {
                     <TransactionList account={this.state.account} />
                   </div>
                 </div>
-                <div className="row">
-                  <div className="column" style={{paddingLeft: '0'}}>
-                    <div className="Container" style={{background: 'linear-gradient(45deg, #d1c4e9 30%, #ede7f6 90%)'}}>
-                      <div style={{width: '45%', height: '25%', alignContent: 'center'}}>
-                      <VictoryPie 
-                        theme={VictoryTheme.material}
-                        data={this.state.account.overview.expense_split}
-                        colorScale={["#ce93d8", "#80cbc4", "#9fa8da" ]}
-                        animate={{ duration: 0 }}
-                        containerComponent={<VictoryContainer responsive={true}/>}
-                        style={{labels: {
-                          fontSize: 10,
-                          color: grey[100]
-                        }}}
-                        events={[{
-                          target: "data",
-                          eventHandlers: {
-                            onMouseOver: () => {
-                              return [
-                                {
-                                  target: "data",
-                                  mutation: ({ style }) => {
-                                    return {style: { fill: "#7e57c2" }};
-                                  }
-                                }, {
-                                  target: "labels",
-                                  mutation: ({ style }) => {
-                                    return {style: { 
-                                      fontWeight: 500,
-                                      fontSize: 12
-                                    }};
-                                  }
+                <div className="row" style={{width: '100%'}}>
+                    <div className="Container" style={{width: '100%', background: 'linear-gradient(45deg, #d1c4e9 30%, #ede7f6 90%)'}}>
+                      <div className="row">
+                        <div className="column">
+                          <div className="ContainerTitle">Expense Breakdown</div>
+                          <VictoryPie 
+                            theme={VictoryTheme.material}
+                            data={this.state.account.overview.expense_split}
+                            colorScale={["#ce93d8", "#80cbc4", "#9fa8da" ]}
+                            animate={{ duration: 0 }}
+                            style={{labels: {
+                              fontSize: 10,
+                              color: grey[100]
+                            }}}
+                            events={[{
+                              target: "data",
+                              eventHandlers: {
+                                onMouseOver: () => {
+                                  return [
+                                    {
+                                      target: "data",
+                                      mutation: ({ style }) => {
+                                        return {style: { fill: "#7e57c2" }};
+                                      }
+                                    }, {
+                                      target: "labels",
+                                      mutation: ({ style, text, data }) => {
+                                        return { 
+                                          style: { 
+                                            fontWeight: 500,
+                                            fontSize: 12
+                                          }
+                                        };
+                                      },
+                                    }
+                                  ];
+                                },
+                                onMouseLeave: () => {
+                                  return [
+                                    {
+                                      target: "data",
+                                      mutation: ({ style }) => {
+                                        return null;
+                                      }
+                                    }, {
+                                      target: "labels",
+                                      mutation: ({ style, text }) => {
+                                        return null;
+                                      }
+                                    }
+                                  ];
                                 }
-                              ];
-                            },
-                            onMouseLeave: () => {
-                              return [
-                                {
-                                  target: "data",
-                                  mutation: ({ style }) => {
-                                    return null;
-                                  }
-                                }, {
-                                  target: "labels",
-                                  mutation: ({ style }) => {
-                                    return null;
-                                  }
-                                }
-                              ];
-                            }
-                          }
-                        }]}
-                        height={200}
-                        width={200}
-                        x={(d) => capitalize(d.category)}
-                        y="value" />
+                              }
+                            }]}
+                            height={200}
+                            width={200}
+                            x={(d) => capitalize(d.category)}
+                            y="value" />
+                        </div>
+                        <div className="column">
+                          <div className="ContainerTitle">Finance Tips</div>
+                          <ReactPlayer url="https://youtu.be/7Kz4GG2EJMY" width={400} height={300} style={{alignContent: 'center', paddingTop: '1.5em', paddingLeft: '1.5em', borderRadius: '1em'}} />
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
               </div>
             </div>
 
