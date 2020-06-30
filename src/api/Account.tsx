@@ -13,7 +13,7 @@ export interface Account {
 }
 
 export function getAccount(id: number): Promise<Account> {
-    return fetch("http://localhost:5000/accounts/" + id)
+    return fetch("https://personal-finance-python-bren.herokuapp.com/accounts/" + id)
     .then(res => res.json())
     .then(res => {
         return res as Account
