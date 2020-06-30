@@ -1,2 +1,2 @@
 web: npm start
-worker: pip install flask && python backend/backend.py
+worker: python backend/backend.py
