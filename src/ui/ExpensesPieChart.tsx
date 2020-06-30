@@ -20,7 +20,7 @@ export class ExpensesPieChart extends React.Component<AccountProps, any> {
                 theme={VictoryTheme.material}
                 data={this.props.account.overview.expense_split}
                 colorScale={["#ce93d8", "#80cbc4", "#9fa8da" ]}
-                animate={{ duration: 0 }}
+                animate={{ duration: 1000 }}
                 style={{labels: {
                     fontSize: 10,
                     color: grey[100]

@@ -1,6 +1,6 @@
 import React from 'react';
-import { VictoryChart, VictoryLine, VictoryTheme, VictoryLabel, VictoryAxis } from 'victory';
-import { green, red } from '@material-ui/core/colors';
+import { VictoryChart, VictoryLine, VictoryTheme, VictoryLabel, VictoryAxis, VictoryTooltip, VictoryVoronoiContainer } from 'victory';
+import { green, red, grey } from '@material-ui/core/colors';
 import { Account } from '../api/Account'
 
 type AccountProps = {
@@ -19,11 +19,28 @@ export class ActivityLineChart extends React.Component<AccountProps, any> {
                 width={700}
                 padding={80}
                 domainPadding={20} 
+                containerComponent={<VictoryVoronoiContainer labels={
+                        ({ datum }) => `$${datum.value / 100}`
+                    } labelComponent={
+                        <VictoryTooltip
+                            cornerRadius={8}
+                            style={{
+                                fontSize: '24px'
+                            }}
+                            pointerLength={0}
+                            flyoutStyle={{
+                                stroke: grey[800],
+                                fill: "white",
+                                color: grey[800],
+                                fontSize: '32px'
+                            }}
+                        />
+                    } />
+                }
                 animate={{
                     duration: 1000
                 }}
                 theme={VictoryTheme.material}>
-
                 <VictoryAxis
                     dependentAxis={true}
                     tickFormat={(t) => '$' + t}
@@ -49,8 +66,6 @@ export class ActivityLineChart extends React.Component<AccountProps, any> {
                                         return { style: { 
                                             strokeWidth: 8,
                                             stroke: green[600]
-                                        }, labels: {
-                                            label: "Yo"
                                         }};
                                     }
                                 }, {

@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.css';
 import { Account } from '../api/Account';
-import { grey, red, green } from '@material-ui/core/colors';
+import { grey, green } from '@material-ui/core/colors';
 
 export type TransactionsProps = { 
     account: Account;

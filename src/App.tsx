@@ -89,7 +89,10 @@ export class App extends React.Component<any, AppState> {
                         </div>
                         <div className="column">
                           <div className="ContainerTitle">Finance Tips</div>
-                          <ReactPlayer url="https://youtu.be/7Kz4GG2EJMY" width={400} height={300} style={{alignContent: 'center', paddingTop: '1.5em', paddingLeft: '1.5em', borderRadius: '1em'}} />
+                          <ReactPlayer url="https://youtu.be/7Kz4GG2EJMY" width={400} height={300} style={{
+                            alignContent: 'center',
+                             padding: '1.5em',
+                             borderRadius: '1em'}} />
                         </div>
                       </div>
                     </div>
