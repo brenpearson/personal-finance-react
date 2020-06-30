@@ -1,1 +1,2 @@
-web: python backend/backend.py
+web: npm start
+worker: python backend/backend.py
