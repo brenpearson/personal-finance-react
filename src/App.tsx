@@ -70,7 +70,7 @@ export class App extends React.Component<any, AppState> {
 
             <div className="column"><div></div>
               <div className="row" style={{width: '100%'}}>
-                <div className="Container" style={{width: '100%'}}>
+                <div className="Container" style={{width: '100%',  paddingBottom: '2em'}}>
                   <div className="row">
                     <div className="column" style={{ width:'100%'}}>
                       <div className="ContainerTitle">Activity</div>
@@ -82,7 +82,7 @@ export class App extends React.Component<any, AppState> {
                     </div>
                   </div>
                 </div>
-                <div className="row" style={{width: '100%'}}>
+                <div className="row" style={{width: '100%', marginTop: '-2em'}}>
                     <div className="Container" style={{width: '100%', background: 'linear-gradient(45deg, #d1c4e9 30%, #ede7f6 90%)'}}>
                       <div className="row">
                         <div className="column">

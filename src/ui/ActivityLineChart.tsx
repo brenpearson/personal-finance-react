@@ -17,22 +17,21 @@ export class ActivityLineChart extends React.Component<AccountProps, any> {
             <VictoryChart
                 padding={90}
                 domainPadding={20} 
-                height={400}
-                width={500}
+                height={380}
+                width={520}
                 containerComponent={<VictoryVoronoiContainer responsive={false} labels={
                         ({ datum }) => `$${datum.value / 100}`
                     } labelComponent={
                         <VictoryTooltip
                             cornerRadius={8}
                             style={{
-                                fontSize: '20px'
+                                fontSize: '16px'
                             }}
                             pointerLength={0}
                             flyoutStyle={{
                                 stroke: grey[800],
                                 fill: "white",
                                 color: grey[800],
-                                fontSize: '32px'
                             }}
                         />
                     } />
@@ -44,9 +43,9 @@ export class ActivityLineChart extends React.Component<AccountProps, any> {
                 <VictoryAxis
                     dependentAxis={true}
                     tickFormat={(t) => '$' + t}
-                    tickLabelComponent={<VictoryLabel style={{fontSize: '24px'}} />} />
+                    tickLabelComponent={<VictoryLabel style={{fontSize: '20px'}} />} />
                 <VictoryAxis
-                    tickLabelComponent={<VictoryLabel style={{fontSize: '24px'}} />} />
+                    tickLabelComponent={<VictoryLabel style={{fontSize: '20px'}} />} />
 
                 <VictoryLine
                     data={this.props.account.overview.income}

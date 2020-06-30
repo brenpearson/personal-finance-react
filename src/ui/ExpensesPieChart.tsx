@@ -22,7 +22,7 @@ export class ExpensesPieChart extends React.Component<AccountProps, any> {
                 colorScale={["#ce93d8", "#80cbc4", "#9fa8da" ]}
                 animate={{ duration: 1000 }}
                 style={{labels: {
-                    fontSize: 10,
+                    fontSize: 9,
                     color: grey[100]
                 }}}
                 events={[{
@@ -40,8 +40,8 @@ export class ExpensesPieChart extends React.Component<AccountProps, any> {
                                 mutation: () => {
                                 return { 
                                     style: { 
-                                    fontWeight: 500,
-                                    fontSize: 12
+                                        fontWeight: 500,
+                                        fontSize: 10
                                     }
                                 };
                                 },
@@ -65,8 +65,8 @@ export class ExpensesPieChart extends React.Component<AccountProps, any> {
                         }
                     }
                 }]}
-                height={200}
-                width={200}
+                height={190}
+                width={190}
                 x={(d) => capitalize(d.category)}
                 y="value" />
         );
