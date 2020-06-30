@@ -48,7 +48,7 @@ export class ActivityLineChart extends React.Component<AccountProps, any> {
                 <VictoryAxis
                     tickLabelComponent={<VictoryLabel style={{fontSize: '24px'}} />} />
 
-                <VictoryLine 
+                <VictoryLine
                     data={this.props.account.overview.income}
                     style={{
                         data: {
