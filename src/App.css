@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap');
+
+.App {
+  text-align: center;
+}
+
+body {
+  display: flex;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  background-color: whitesmoke;
+  flex-direction: row;
+  justify-content: left;
+  align-items: top;
+  padding: 1em;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1em;
+  height: 100%;
+  flex: 5;
+}
+
+.ProfileBar {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+}
+
+.Account-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-top: 4em;
+  padding-bottom: 4em;
+  color: white;
+  background: linear-gradient(45deg, #7e57c2 30%, #b085f5 90%);
+  border-radius: 1em;
+  z-index: 1;
+}
+
+.ProfileName {
+  padding-left: 2em;
+  text-align: start;
+  font-family: 'Lora', serif;
+  font-weight: 500;
+}
+
+.Title {
+  font-size: 24px;
+  font-weight: 600;
+  font-family: 'Lora', serif;
+}
+
+.Caption {
+  font-size: 14px;
+  padding-top: 1.5em;
+  padding-bottom: 0.25em;
+  color: black;
+}
+
+.Balance {
+  font-size: 24px;
+  font-weight: 600;
+  padding-bottom: 1em;
+  color: black;
+}
+
+.Container {
+  background-color: white;
+  border-radius: 1em;
+}
+
+.ContainerTitle {
+  font-family: 'Lora', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: start;
+  padding-left: 1em;
+  padding-top: 1em;
+}
+
+.TransactionItem {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  width: 100%;
+  padding-left: 1em;
+  padding-top: 1.5em;
+}
+
+.TransactionList {
+  width: 100%;
+  padding-bottom: 2em;
+}
+
+.TransactionDescription {
+  font-size: 16px;
+  font-weight: 500;
+  width: 100%;
+  text-align: left;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.TransactionCategory {
+  font-size: 12px;
+  font-weight: 600;
+  padding-right: 1em;
+  width: 50%;
+  padding-top: 0.5em;
+  color: grey;
+  text-transform: uppercase;
+  text-align: left;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.TransactionValue {
+  font-size: 16px;
+  font-weight: 600;
+  padding-right: 1em;
+  text-align: right;
+  vertical-align: middle;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.ProfileContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+}
+
+.BalanceContainer {
+  background-color: white;
+  color: black;
+  width: 94.5%;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+  padding-top: 8em;
+  padding-bottom: 3em;
+  transform: translateY(-20%);
+  justify-content: center;
+  align-items: center;
+}
