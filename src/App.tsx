@@ -68,16 +68,18 @@ export class App extends React.Component<any, AppState> {
               }} />
             </div>
 
-            <div className="column">
-              <div className="Container">
-                <div className="row">
-                  <div className="column">
-                    <div className="ContainerTitle">Activity</div>
+            <div className="column"><div></div>
+              <div className="row" style={{width: '100%'}}>
+                <div className="Container" style={{width: '100%'}}>
+                  <div className="row">
+                    <div className="column" style={{ width:'100%'}}>
+                      <div className="ContainerTitle">Activity</div>
                       <ActivityLineChart account={this.state.account} />
-                  </div>
-                  <div className="column">
-                    <div className="ContainerTitle">Transactions</div>
-                    <TransactionList account={this.state.account} />
+                    </div>
+                    <div className="column">
+                      <div className="ContainerTitle">Transactions</div>
+                      <TransactionList account={this.state.account} />
+                    </div>
                   </div>
                 </div>
                 <div className="row" style={{width: '100%'}}>
@@ -90,7 +92,7 @@ export class App extends React.Component<any, AppState> {
                         <div className="column">
                           <div className="ContainerTitle">Finance Tips</div>
                           <ReactPlayer url="https://youtu.be/7Kz4GG2EJMY" width={400} height={300} style={{
-                            alignContent: 'center',
+                             alignContent: 'center',
                              padding: '1.5em',
                              borderRadius: '1em'}} />
                         </div>

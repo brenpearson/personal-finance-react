@@ -15,17 +15,17 @@ export class ActivityLineChart extends React.Component<AccountProps, any> {
     render() {
         return (
             <VictoryChart
-                height={500}
-                width={700}
-                padding={80}
+                padding={90}
                 domainPadding={20} 
-                containerComponent={<VictoryVoronoiContainer labels={
+                height={400}
+                width={500}
+                containerComponent={<VictoryVoronoiContainer responsive={false} labels={
                         ({ datum }) => `$${datum.value / 100}`
                     } labelComponent={
                         <VictoryTooltip
                             cornerRadius={8}
                             style={{
-                                fontSize: '24px'
+                                fontSize: '20px'
                             }}
                             pointerLength={0}
                             flyoutStyle={{
