@@ -7,14 +7,14 @@ A small journey into learning React and Typescript.
 This project has both a frontend and backend that you will have to run.
 
 First for the backend you will need to install Python 3 and Flask. Assuming you have Python and pip installed you can just run `pip install flask`.
-Now you can run the server by running:
-###`python backend/backend.py`
+Now you can run the server by running
+### `python backend/backend.py`
 
 Now that the backend is running we can set up the frontend React app in another terminal tab.
 In order to run the app you will first need to get the dependencies by running
-###`npm install`
+### `npm install`
 
-After this is finished you can simply run
+<br />After this is finished you can simply run
 ### `npm start`
 
 Which runs the app in the development mode.<br />
