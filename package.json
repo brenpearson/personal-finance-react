@@ -16,7 +16,7 @@
     "react-avatar": "^3.9.7",
     "react-dom": "^16.13.1",
     "react-player": "^2.4.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "5.0.1",
     "typescript": "^3.7.5",
     "victory": "^34.3.12"
   },
